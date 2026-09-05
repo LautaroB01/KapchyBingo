@@ -214,27 +214,25 @@ body {
     padding-right: 15px;
 }
 
-/* --- Previsualización de Número Grande --- */
 .number-preview {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+    background-color: rgba(0, 0, 0, 0.7); 
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 3000; /* Se asegura de estar por encima de TODO */
+    z-index: 3000; 
     
-    /* Configuración para ocultarlo por defecto */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-/* Clase que agregaremos con JavaScript para mostrarlo */
+
 .number-preview.show {
     opacity: 1;
     visibility: visible;
@@ -268,13 +266,60 @@ body {
     line-height: 1;
 }
 
+@media (max-width: 1366px) {
+    #event-logo {
+        max-height: 150px; /* Reducimos el logo a la mitad */
+        max-width: 150px;
+    }
+    
+    .clock-container {
+        font-size: 1.1rem;
+        padding: 8px 15px;
+    }
+
+    .clock-date {
+        font-size: 0.9rem;
+    }
+    
+    .number-cell, .column-header {
+        font-size: 2.2rem; /* Achicamos los números un poco */
+    }
+    
+    .app-container {
+        max-width: 800px; /* Hacemos el tablero un poco más angosto */
+    }
+}
+
+
+@media (max-height: 768px) {
+    .app-container {
+        height: auto;
+        min-height: 100vh;
+        padding-top: 100px; 
+        padding-bottom: 20px;
+    }
+    
+    #event-logo {
+        max-height: 100px; 
+        max-width: 100px;
+    }
+    
+    .top-bar {
+        top: 10px;
+    }
+    
+    .number-cell {
+        font-size: 1.8rem;
+    }
+}
+
 @media (max-width: 900px) {
     .top-bar {
         padding: 0 20px;
         top: 15px;
     }
     #event-logo {
-        max-height: 120px; /* Reducimos el logo */
+        max-height: 120px; 
         max-width: 150px;
     }
     .clock-container {
@@ -282,20 +327,19 @@ body {
         padding: 8px 15px;
     }
     .number-cell, .column-header {
-        font-size: 2rem; /* Achicamos un poco los números */
+        font-size: 2rem; 
     }
 }
 
-/* Pantallas pequeñas (Celulares) */
+
 @media (max-width: 600px) {
     .app-container {
-        height: auto; /* Quitamos el 95vh para que se adapte al contenido */
+        height: auto; 
         min-height: 100vh;
-        padding-top: 90px; /* Damos espacio para la barra superior fija */
+        padding-top: 90px; 
         padding-bottom: 20px;
     }
 
-    /* Barra Superior */
     .top-bar {
         top: 10px;
         padding: 0 10px;
@@ -303,7 +347,7 @@ body {
     }
 
     #event-logo {
-        max-height: 50px; /* Logo pequeño para no ocupar espacio de juego */
+        max-height: 50px; 
         max-width: 80px;
     }
 
@@ -311,7 +355,7 @@ body {
         font-size: 0.9rem;
         padding: 5px 10px;
         border-radius: 12px;
-        flex-direction: column; /* Apilamos la fecha arriba y la hora abajo */
+        flex-direction: column; 
         align-items: flex-end;
     }
 
@@ -323,13 +367,12 @@ body {
         font-size: 0.75rem;
     }
 
-    /* Tablero de Bingo */
     .board-container {
         padding: 10px;
     }
     
     .bingo-board {
-        gap: 5px; /* Juntamos más las columnas */
+        gap: 5px; 
     }
 
     .bingo-column {
