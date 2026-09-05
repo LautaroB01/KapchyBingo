@@ -267,3 +267,125 @@ body {
     text-shadow: 0 10px 20px rgba(0,0,0,0.6);
     line-height: 1;
 }
+
+@media (max-width: 900px) {
+    .top-bar {
+        padding: 0 20px;
+        top: 15px;
+    }
+    #event-logo {
+        max-height: 120px; /* Reducimos el logo */
+        max-width: 150px;
+    }
+    .clock-container {
+        font-size: 1.2rem;
+        padding: 8px 15px;
+    }
+    .number-cell, .column-header {
+        font-size: 2rem; /* Achicamos un poco los números */
+    }
+}
+
+/* Pantallas pequeñas (Celulares) */
+@media (max-width: 600px) {
+    .app-container {
+        height: auto; /* Quitamos el 95vh para que se adapte al contenido */
+        min-height: 100vh;
+        padding-top: 90px; /* Damos espacio para la barra superior fija */
+        padding-bottom: 20px;
+    }
+
+    /* Barra Superior */
+    .top-bar {
+        top: 10px;
+        padding: 0 10px;
+        align-items: center;
+    }
+
+    #event-logo {
+        max-height: 50px; /* Logo pequeño para no ocupar espacio de juego */
+        max-width: 80px;
+    }
+
+    .clock-container {
+        font-size: 0.9rem;
+        padding: 5px 10px;
+        border-radius: 12px;
+        flex-direction: column; /* Apilamos la fecha arriba y la hora abajo */
+        align-items: flex-end;
+    }
+
+    .clock-date {
+        margin-right: 0;
+        border-right: none;
+        padding-right: 0;
+        padding-bottom: 2px;
+        font-size: 0.75rem;
+    }
+
+    /* Tablero de Bingo */
+    .board-container {
+        padding: 10px;
+    }
+    
+    .bingo-board {
+        gap: 5px; /* Juntamos más las columnas */
+    }
+
+    .bingo-column {
+        gap: 3px;
+    }
+
+    .column-header {
+        font-size: 1.4rem;
+        padding: 3px;
+    }
+
+    .number-cell {
+        font-size: 1.3rem; /* Números adaptados al dedo */
+        border-radius: 4px;
+    }
+
+    /* Controles (Botones y Input) */
+    .controls {
+        height: auto; /* Quitamos los 80px fijos */
+        flex-direction: column; /* Apilamos los botones uno debajo del otro */
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%; /* Botones de ancho completo */
+        padding: 15px;
+        font-size: 1.2rem;
+    }
+
+    .number-input {
+        width: 100%; /* Input de ancho completo */
+        height: 60px;
+        font-size: 2rem;
+    }
+
+    /* Animación del número gigante */
+    .preview-circle {
+        width: 200px; /* Circulo más pequeño */
+        height: 200px;
+        border-width: 5px;
+    }
+
+    #preview-text {
+        font-size: 6rem; /* Letra adaptada a la pantalla */
+    }
+}
+
+/* Teléfonos muy pequeños (Ej: iPhone SE) */
+@media (max-width: 375px) {
+    .number-cell {
+        font-size: 1.1rem;
+    }
+    .column-header {
+        font-size: 1.2rem;
+    }
+    .top-bar {
+        padding: 0 5px;
+    }
+}
