@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bingo Master</title>
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div id="number-preview" class="number-preview">
+        <div class="preview-circle">
+            <span id="preview-text"></span>
+        </div>
+    </div>
+
+    <div class="app-container">
+        
+        <div class="top-bar">
+            <div class="logo-container">
+                <img src="assets/logo.png" id="event-logo" alt="Logo Evento">
+            </div>
+            <div id="clock-container" class="clock-container">
+                </div>
+        </div>
+
+        <div class="board-container">
+            <div id="bingo-board" class="bingo-board">
+                </div>
+        </div>
+        
+        <div class="controls">
+            <button id="btn-clear" class="btn btn-secondary">limpiar tablero</button>
+            
+            <input type="number" id="number-input" class="number-input" placeholder="Ej: 42 ↵" min="1" max="75" autocomplete="off" autofocus>
+            
+            <button id="btn-winner" class="btn btn-primary">BINGO!</button>
+        </div>
+    </div>
+    <script src="app.js" type="module"></script>
+</body>
+</html>

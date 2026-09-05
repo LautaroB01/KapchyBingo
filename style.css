@@ -1,0 +1,269 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-image: var(--imagen-fondo-pantalla);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px); /* Efecto de desenfoque al fondo */
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Reducimos la separación general */
+    width: 95vw;
+    max-width: 900px; /* ANTES 1400px. Esto hace el tablero más angosto y revela los laterales del fondo */
+    height: 95vh;
+    margin: 0 auto; /* Mantiene el tablero centrado en la pantalla */
+}
+
+.board-container {
+    flex-grow: 1;
+    background-color: var(--color-fondo-tablero);
+    border: var(--borde-tablero);
+    border-radius: var(--radio-borde-tablero);
+    padding: 15px; /* Reducimos el padding interno para ganar espacio */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+}
+
+.bingo-board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px; /* ANTES 15px. Acerca las columnas entre sí */
+    height: 100%;
+}
+
+.bingo-column {
+    display: flex;
+    flex-direction: column;
+    gap: 4px; /* ANTES 8px. Acerca los números verticalmente para ganar altura */
+}
+
+.column-header {
+    text-align: center;
+    font-size: 2.8rem; /* Letras BINGO más grandes */
+    font-weight: 900;
+    color: var(--color-texto-letras);
+    background-color: var(--fondo-letras);
+    padding: 5px; /* Menos espacio de relleno */
+    border-radius: 10px;
+    margin-bottom: 8px;
+}
+
+.number-cell {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.8rem; /* ANTES 1.8rem. El número ahora es gigante */
+    font-weight: 900;  /* Grosor máximo de la letra */
+    line-height: 1;    /* Elimina márgenes invisibles arriba y abajo del texto */
+    color: var(--color-texto-numero);
+    background-color: var(--fondo-numero-normal);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+}
+
+.number-cell:hover {
+    transform: scale(1.05);
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.number-cell.marked {
+    background-color: var(--fondo-numero-marcado);
+    color: var(--color-texto-marcado);
+    box-shadow: 0 0 15px var(--fondo-numero-marcado);
+    transform: scale(1.02);
+}
+
+/* Botones de Control */
+.controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    height: 80px;
+}
+
+.btn {
+    flex-grow: 1;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.1s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.btn:active { transform: scale(0.98); }
+
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid white;
+    backdrop-filter: blur(10px);
+}
+
+.btn-primary {
+    background-color: #10b981; /* Verde esmeralda */
+    color: white;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.4);
+}
+
+/* --- Estilos para el Input Numérico --- */
+.number-input {
+    width: 180px;
+    background-color: var(--color-fondo-tablero);
+    border: var(--borde-tablero);
+    border-radius: 15px;
+    color: var(--color-texto-numero);
+    font-size: 2.5rem;
+    font-weight: 900;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.number-input:focus {
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); /* Resplandor al hacer clic */
+    transform: scale(1.05);
+}
+
+.number-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 1.2rem;
+    font-weight: normal;
+}
+
+/* Ocultar las flechas de incremento/decremento nativas del navegador */
+.number-input::-webkit-inner-spin-button, 
+.number-input::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+.number-input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/* --- Barra Superior (Logo y Reloj) --- */
+.top-bar {
+    position: fixed; /* Esto la saca del contenedor y la ancla a la pantalla */
+    top: 30px;       /* Distancia desde el techo de la pantalla */
+    left: 0;
+    width: 100%;     /* Ocupa el 100% del ancho del monitor */
+    padding: 0 40px; /* 40px de separación de los bordes izquierdo y derecho */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    z-index: 1000;   /* Nos aseguramos de que siempre flote por encima de todo */
+    pointer-events: none; /* Evita que el espacio vacío entre el logo y el reloj bloquee clics */
+    box-sizing: border-box;
+}
+
+/* Reactivamos los clics solo para los elementos visuales por si a futuro agregas botones ahí */
+.logo-container, .clock-container {
+    pointer-events: auto; 
+}
+/* Control del tamaño del Logo */
+#event-logo {
+    max-height: 300px; /* Límite de altura: nunca será más grande que esto */
+    max-width: 300px;
+    object-fit: contain; /* Evita que la imagen se estire o se deforme */
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); /* Sombra elegante */
+}
+
+/* Diseño del Reloj */
+.clock-container {
+    background-color: var(--color-fondo-tablero);
+    border: 2px solid var(--color-texto-letras);
+    border-radius: 20px;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(5px);
+    letter-spacing: 1px;
+}
+
+/* Estilo para la fecha dentro del reloj */
+.clock-date {
+    font-size: 1rem;
+    font-weight: normal;
+    color: rgba(255, 255, 255, 0.7); /* Blanco más tenue para contrastar con la hora */
+    margin-right: 15px;
+    border-right: 1px solid rgba(255, 255, 255, 0.3);
+    padding-right: 15px;
+}
+
+/* --- Previsualización de Número Grande --- */
+.number-preview {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Oscurece el fondo */
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000; /* Se asegura de estar por encima de TODO */
+    
+    /* Configuración para ocultarlo por defecto */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Clase que agregaremos con JavaScript para mostrarlo */
+.number-preview.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.preview-circle {
+    width: 350px;
+    height: 350px;
+    background-color: var(--color-fondo-tablero);
+    border: 8px solid var(--borde-tablero);
+    border-radius: 50%; /* Lo hace un círculo perfecto */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); /* Resplandor dorado */
+    
+    /* Efecto de animación "pop" */
+    transform: scale(0.5);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.number-preview.show .preview-circle {
+    transform: scale(1);
+}
+
+#preview-text {
+    font-size: 12rem;
+    font-weight: 900;
+    color: #ffffff;
+    text-shadow: 0 10px 20px rgba(0,0,0,0.6);
+    line-height: 1;
+}

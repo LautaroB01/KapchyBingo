@@ -1,0 +1,19 @@
+:root {
+    --imagen-fondo-pantalla: url('assets/fondo.jpg'); 
+    
+    --color-fondo-tablero: rgba(15, 23, 42, 0.65);
+    --borde-tablero: 4px solid #D4AF37; /* Bordes */
+    --radio-borde-tablero: 20px;
+    
+    /* Letras (BINGO) */
+    --color-texto-letras: #D4AF37;
+    --fondo-letras: rgba(0,0,0,0.5);
+
+    /* Números */
+    --color-texto-numero: #ffffff;
+    --fondo-numero-normal: rgba(255, 255, 255, 0.05);
+    
+    /* Estado: Número Marcado */
+    --fondo-numero-marcado: #ef4444;
+    --color-texto-marcado: #ffffff;
+}
