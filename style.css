@@ -14,17 +14,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(5px); /* Efecto de desenfoque al fondo */
+    backdrop-filter: blur(5px); 
 }
 
 .app-container {
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Reducimos la separación general */
+    gap: 15px; 
     width: 95vw;
-    max-width: 900px; /* ANTES 1400px. Esto hace el tablero más angosto y revela los laterales del fondo */
+    max-width: 900px; 
     height: 95vh;
-    margin: 0 auto; /* Mantiene el tablero centrado en la pantalla */
+    margin: 0 auto; 
 }
 
 .board-container {
@@ -32,7 +32,7 @@ body {
     background-color: var(--color-fondo-tablero);
     border: var(--borde-tablero);
     border-radius: var(--radio-borde-tablero);
-    padding: 15px; /* Reducimos el padding interno para ganar espacio */
+    padding: 15px; 
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
     display: flex;
     flex-direction: column;
@@ -41,14 +41,14 @@ body {
 .bingo-board {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px; /* ANTES 15px. Acerca las columnas entre sí */
+    gap: 10px; 
     height: 100%;
 }
 
 .bingo-column {
     display: flex;
     flex-direction: column;
-    gap: 4px; /* ANTES 8px. Acerca los números verticalmente para ganar altura */
+    gap: 4px; 
 }
 
 .column-header {
@@ -141,7 +141,7 @@ body {
 }
 
 .number-input:focus {
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); /* Resplandor al hacer clic */
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); 
     transform: scale(1.05);
 }
 
@@ -151,7 +151,6 @@ body {
     font-weight: normal;
 }
 
-/* Ocultar las flechas de incremento/decremento nativas del navegador */
 .number-input::-webkit-inner-spin-button, 
 .number-input::-webkit-outer-spin-button { 
     -webkit-appearance: none; 
@@ -161,31 +160,30 @@ body {
     -moz-appearance: textfield;
 }
 
-/* --- Barra Superior (Logo y Reloj) --- */
+
 .top-bar {
-    position: fixed; /* Esto la saca del contenedor y la ancla a la pantalla */
-    top: 30px;       /* Distancia desde el techo de la pantalla */
+    position: fixed;
+    top: 30px;     
     left: 0;
-    width: 100%;     /* Ocupa el 100% del ancho del monitor */
-    padding: 0 40px; /* 40px de separación de los bordes izquierdo y derecho */
+    width: 100%;  
+    padding: 0 40px; 
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    z-index: 1000;   /* Nos aseguramos de que siempre flote por encima de todo */
-    pointer-events: none; /* Evita que el espacio vacío entre el logo y el reloj bloquee clics */
+    z-index: 1000;   
+    pointer-events: none; 
     box-sizing: border-box;
 }
 
-/* Reactivamos los clics solo para los elementos visuales por si a futuro agregas botones ahí */
-.logo-container, .clock-container {
+
     pointer-events: auto; 
 }
-/* Control del tamaño del Logo */
+
 #event-logo {
-    max-height: 300px; /* Límite de altura: nunca será más grande que esto */
+    max-height: 300px; 
     max-width: 300px;
-    object-fit: contain; /* Evita que la imagen se estire o se deforme */
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); /* Sombra elegante */
+    object-fit: contain; 
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.6)); 
 }
 
 /* Diseño del Reloj */
@@ -204,11 +202,11 @@ body {
     letter-spacing: 1px;
 }
 
-/* Estilo para la fecha dentro del reloj */
+
 .clock-date {
     font-size: 1rem;
     font-weight: normal;
-    color: rgba(255, 255, 255, 0.7); /* Blanco más tenue para contrastar con la hora */
+    color: rgba(255, 255, 255, 0.7); 
     margin-right: 15px;
     border-right: 1px solid rgba(255, 255, 255, 0.3);
     padding-right: 15px;
@@ -243,13 +241,12 @@ body {
     height: 350px;
     background-color: var(--color-fondo-tablero);
     border: 8px solid var(--borde-tablero);
-    border-radius: 50%; /* Lo hace un círculo perfecto */
+    border-radius: 50%; 
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); /* Resplandor dorado */
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.5); 
     
-    /* Efecto de animación "pop" */
     transform: scale(0.5);
     transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
