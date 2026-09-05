@@ -87,8 +87,6 @@ numberInput.addEventListener('keydown', (event) => {
         if (!isNaN(value) && value >= 1 && value <= 75) {
             toggleNumber(value);
             
-            // NUEVO: Solo mostrar la previsualización gigante si el número se está MARCANDO.
-            // Si el operador escribe por error un número que ya estaba marcado, se desmarcará pero no saltará la alerta gigante.
             if (markedNumbers.has(value)) {
                 showNumberPreview(value);
             }
@@ -142,22 +140,19 @@ const clockElement = document.getElementById('clock-container');
 
 function updateClock() {
     const now = new Date();
-    
-    // Configurar cómo queremos que se vea la fecha (Ej: "domingo, 7 de junio")
+
     const dateOptions = { weekday: 'long', day: 'numeric', month: 'long' };
     let dateString = now.toLocaleDateString('es-AR', dateOptions);
     
-    // Capitalizar la primera letra para que sea más profesional
     dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
     
-    // Configurar cómo queremos que se vea la hora (Ej: "14:30:45")
     const timeString = now.toLocaleTimeString('es-AR', { 
         hour: '2-digit', 
         minute: '2-digit',
         second: '2-digit'
     });
 
-    // Inyectar el HTML dentro del contenedor del reloj
+
     clockElement.innerHTML = `
         <span class="clock-date">${dateString}</span>
         <span>${timeString}</span>
