@@ -1,3 +1,4 @@
+/*Datos del tablero*/
 const markedNumbers = new Set();
 const bingoConfig = [
     { letter: 'B', min: 1, max: 15 },
@@ -19,6 +20,7 @@ const previewOverlay = document.getElementById('number-preview');
 const previewText = document.getElementById('preview-text');
 let previewTimeout;
 
+/*Numeros*/
 function showNumberPreview(number) {
     previewText.textContent = number;
     
@@ -58,6 +60,7 @@ function initializeBoard() {
     });
 }
 
+/*Marcar numeros*/
 function toggleNumber(number, htmlElement = null) {
     const element = htmlElement || document.querySelector(`.number-cell[data-number="${number}"]`);
     
@@ -87,6 +90,7 @@ numberInput.addEventListener('keydown', (event) => {
         if (!isNaN(value) && value >= 1 && value <= 75) {
             toggleNumber(value);
             
+ 
             if (markedNumbers.has(value)) {
                 showNumberPreview(value);
             }
@@ -96,6 +100,7 @@ numberInput.addEventListener('keydown', (event) => {
     }
 });
 
+/*Limpiar tablero*/
 btnClear.addEventListener('click', () => {
     Swal.fire({
         title: '¿Estás seguro?',
@@ -113,6 +118,7 @@ btnClear.addEventListener('click', () => {
     });
 });
 
+/*Boton Ganador*/
 btnWinner.addEventListener('click', () => {
     winnerSound.play();
     confetti({
@@ -140,19 +146,22 @@ const clockElement = document.getElementById('clock-container');
 
 function updateClock() {
     const now = new Date();
-
+    
+    // Configurar cómo queremos que se vea la fecha (Ej: "domingo, 7 de junio")
     const dateOptions = { weekday: 'long', day: 'numeric', month: 'long' };
     let dateString = now.toLocaleDateString('es-AR', dateOptions);
     
+
     dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
     
+
     const timeString = now.toLocaleTimeString('es-AR', { 
         hour: '2-digit', 
         minute: '2-digit',
         second: '2-digit'
     });
 
-
+    // Inyectar el HTML dentro del contenedor del reloj
     clockElement.innerHTML = `
         <span class="clock-date">${dateString}</span>
         <span>${timeString}</span>
